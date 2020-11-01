@@ -1,0 +1,24 @@
+<%- include('../partials/header') %>  
+
+  <body>
+    
+    <h1>Recipes</h1>
+    <table>
+      <% user.recipes.forEach(s => { %>
+        <tr>
+          <% console.log(s) %>
+          <td><a href='/recipes/<%= s._id %>'><%= s.recipeName %></a></td>
+        </tr>
+      <% }) %>
+    </table>
+    <form action='recipes/' method='POST'>
+      <label>Recipe Name
+        <input type='text' name='recipeName'>
+      </label>
+      <button type='submit'>New Recipe</button>
+    </form>
+
+  </body>
+
+
+</html>

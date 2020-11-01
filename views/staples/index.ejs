@@ -1,0 +1,25 @@
+<%- include('../partials/header') %>  
+
+  <body>
+
+    <h1>Staples</h1>
+    <table>
+      <% user.staples.forEach(s => { %>
+        <tr>
+          <td><%= s.ingredient.ingredientName %></td>
+          <td><%= s.amount %></td>
+        </tr>
+      <% }) %>
+    </table>
+    <form action='/staples' method='POST'>
+      <label>
+        <input type="text" name="ingredientName">
+        <input type="text" name="amount">
+        <button type="submit">Add</button>
+      </label>
+    </form>
+    
+  </body>
+
+
+</html>

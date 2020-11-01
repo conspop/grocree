@@ -1,0 +1,18 @@
+<%- include('../partials/header') %>  
+
+  <body>
+
+    <h1>Lists</h1>
+    <table>
+      <% user.lists.forEach(s => { %>
+        <tr>
+          <td><%= s.listName %></td>
+        </tr>
+      <% }) %>
+    </table>
+    <a href='/lists/new'>New List</a>
+
+  </body>
+
+
+</html>

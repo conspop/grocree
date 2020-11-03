@@ -8,7 +8,10 @@ module.exports = {
   create,
   edit,
   addIngredient,
-  index
+  index,
+  show,
+  deleteIngredient,
+  deleteList
 };
 
 function index(req, res) {
@@ -31,24 +34,32 @@ function create(req, res) {
       let groceryList = {}
       if (req.body.staples === 'Yes') {
         user.staples.forEach(s => {
-          if (groceryList[s.ingredient.ingredientName]) {
-            groceryList[s.ingredient.ingredientName].push(s.amount)
+          if (groceryList[s.ingredient._id]) {
+            groceryList[s.ingredient._id].push(s.amount)
           } else {
-            groceryList[s.ingredient.ingredientName]= [s.amount]
+            groceryList[s.ingredient._id]= [s.amount]
           }
         })
       }
-      req.body.recipes.forEach(r => {
+      let recipes = (typeof(req.body.recipes) === 'string') ? req.body.recipes.split() : req.body.recipes;
+      recipes.forEach(r => {
         user.recipes[r].recipeIngredients.forEach(rI => {
           let ingredient = (ingredients.find(i => i._id.equals(rI.ingredient)))
-          if (groceryList[ingredient.ingredientName]) {
-            groceryList[ingredient.ingredientName].push(rI.amount)
+          if (groceryList[ingredient._id]) {
+            groceryList[ingredient._id].push(rI.amount)
           } else {
-            groceryList[ingredient.ingredientName]= [rI.amount]
+            groceryList[ingredient._id]= [rI.amount]
           }
         })
       })
-      console.log(groceryList)
+      groceryList = Object.entries(groceryList)
+      groceryList.forEach(g => {
+        newList.listIngredients.push({ingredient: g[0], amount: g[1]})
+      })
+      newList.save()
+      req.user.lists.push(newList._id)
+      req.user.save()
+      res.redirect(`/lists/${newList._id}`)
     })
   })
 }
@@ -62,18 +73,44 @@ function edit(req, res) {
 }
 
 function addIngredient(req, res) {
-  Recipe.findById(req.params.recipeId, function(err, recipe) {
+  List.findById(req.params.listId, function(err, list) {
     Ingredient.findOne({ingredientName: req.body.ingredientName}, function(err, ingredient) {
       if (ingredient === null) {
         newIngredient = new Ingredient()
         newIngredient.ingredientName = req.body.ingredientName
         newIngredient.save(function(err, newIngredient) {
-          recipe.recipeIngredients.push({ingredient: newIngredient._id, amount: req.body.amount})
-          recipe.save()
-          res.redirect(`/recipes/${recipe._id}`)
+          list.listIngredients.push({ingredient: newIngredient._id, amount: req.body.amount})
+          list.save()
+          res.redirect(`/lists/${list._id}`)
         })
+      } else {
+        list.listIngredients.push({ingredient: ingredient._id, amount: req.body.amount})
+        list.save()
+        res.redirect(`/lists/${list._id}`)
       }
     })
+  })
+}
+
+function show(req, res) {
+  List.findById(req.params.listId).populate('listIngredients.ingredient').exec(function(err, list) {
+    res.render('lists/show', {user:req.user, list})
+  })
+}
+
+function deleteIngredient(req, res) {
+  List.findById(req.params.listId, function(err, list) {
+    let index = list.listIngredients.findIndex(i => i.ingredient._id.equals(req.params.ingredientId))
+    list.listIngredients[index].remove()
+    list.save(function(err) {
+      res.redirect(`/lists/${list._id}`)
+    })
+  })
+}
+
+function deleteList(req, res) {
+  List.findByIdAndDelete(req.params.listId, function(err) {
+    res.redirect('/lists')
   })
 }
 

@@ -1,0 +1,41 @@
+<%- include('../partials/header') %>  
+
+  <body>
+    <div class='container'>
+
+      <h1><%= list.listName %></h1>
+
+      <table class='table table-sm'>
+        <tr>
+          <th>Ingredient</th>
+          <th>Amount</th>
+          <th></th>
+        </tr>
+        <% list.listIngredients.forEach(i => { %>
+          <tr>
+            <td><%= i.ingredient.ingredientName %></td>
+            <td><%= i.amount %></td>
+            <td>
+              <form action='/lists/<%= list._id %>/ingredient/<%= i.ingredient._id %>?_method=DELETE' method='POST'>
+                <button type='submit'>Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+  
+      </table>
+      <form action='/lists/<%= list._id %>/ingredient' method='POST'>
+        <label>
+          <input required placeholder='Ingredient' type="text" name="ingredientName" autofocus>
+          <input required placeholder='Amount' type="text" name="amount">
+          <button type="submit">Add</button>
+        </label>
+      </form>
+
+    </div>
+    
+
+  </body>
+
+
+</html>

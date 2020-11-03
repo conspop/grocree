@@ -5,20 +5,26 @@ const Ingredient = require('../models/ingredient')
 
 module.exports = {
   addStaple,
-  index
+  index,
+  deleteIngredient
 };
 
 function addStaple(req, res) {
-  Ingredient.findOne({ingredientName: req.body.ingredientName}).exec(function(err, ingredient) {
-    if (ingredient === null) {
-      newIngredient = new Ingredient()
-      newIngredient.ingredientName = req.body.ingredientName
-      newIngredient.save(function(err, newIngredient) {
-        req.user.staples.push({ingredient: newIngredient._id, amount: req.body.amount})
-        req.user.save()
-        res.redirect('/staples')
-      })
+  User.findById(req.user._id).populate('ingredients').exec(function(err, user) {
+    console.log(user)
+    let index = user.ingredients.findIndex(i => i.ingredientName === req.body.ingredientName)
+    if (index === -1) {
+      let newIngredient = new Ingredient();
+      newIngredient.ingredientName = req.body.ingredientName;
+      newIngredient.save();
+      user.staples.push({ingredient: newIngredient._id, amount:req.body.amount});
+      user.ingredients.push(newIngredient._id);
+      user.save();
+    } else {
+      user.staples.push({ingredient: user.ingredients[index]._id, amount:req.body.amount})
+      user.save()
     }
+    res.redirect('/staples')
   })
 }
 
@@ -26,4 +32,11 @@ function index(req, res) {
   User.findById(req.user._id).populate('staples').populate('staples.ingredient').exec(function(err, user) {
     res.render('staples/index', {user})
   })
+}
+
+function deleteIngredient(req, res) {
+  let index = req.user.staples.findIndex(s => s.ingredient.equals(req.params.ingredientId))
+  req.user.staples[index].remove()
+  req.user.save()
+  res.redirect('/staples')
 }

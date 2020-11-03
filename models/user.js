@@ -10,7 +10,8 @@ const userSchema = new Schema({
     ingredient: {type: Schema.Types.ObjectId, ref: 'Ingredient'},
     amount: String
   }],
-  lists: [{type: Schema.Types.ObjectId, ref: 'List'}]
+  lists: [{type: Schema.Types.ObjectId, ref: 'List'}],
+  ingredients: [{type: Schema.Types.ObjectId, ref: 'Ingredient'}]
 });
 
 module.exports = mongoose.model('User', userSchema);

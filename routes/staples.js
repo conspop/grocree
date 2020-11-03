@@ -5,6 +5,8 @@ var staplesCtrl = require('../controllers/staples')
 
 router.get('/', isLoggedIn, staplesCtrl.index);
 
+router.delete('/ingredient/:ingredientId', isLoggedIn, staplesCtrl.deleteIngredient)
+
 router.post('/', staplesCtrl.addStaple);
 
 function isLoggedIn(req, res, next) {

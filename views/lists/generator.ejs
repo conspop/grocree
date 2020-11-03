@@ -1,27 +1,23 @@
 <%- include('../partials/header') %>  
 
   <body>
-
-  <form action='/lists/generated' method='POST'>
-    <h5>List name:</h5>
-      <input type="text" name="listName">
-      <br>
-    <h5>Add your staples?</h5>
-      <input checked id='yes' type='radio' name='staples' value='Yes'>
-      <label for="yes">Yes</label>
-      <input id='no' type='radio' name='staples' value='No'>
-      <label for="no">No</label><br>
-
-    <h5>Which recipes would you like to include?</h5>
-    <% user.recipes.forEach((r,idx) => { %>
-      <input name='recipes' type='checkbox' value=<%= idx %> %>>
-      <label for="<%= idx %>"><%= r.recipeName %></label><br>
-    <% }) %>
-    <button type='submit'>Generate List</button>
-
-  </form>
-
+    <div class='container-sm'>
+      <form action='/lists/generated' method='POST'>
+        <h5>List name:</h5>
+          <input required placeholder='List Name' type="text" name="listName">
+          <br>
+        <h5>Add your staples?</h5>
+          <input checked id='yes' type='radio' name='staples' value='Yes'>
+          <label for="yes">Yes</label>
+          <input id='no' type='radio' name='staples' value='No'>
+          <label for="no">No</label><br>
+        <h5>Which recipes would you like to include?</h5>
+        <% user.recipes.forEach((r,idx) => { %>
+          <input name='recipes' type='checkbox' value=<%= idx %> %>>
+          <label for="<%= idx %>"><%= r.recipeName %></label><br>
+        <% }) %>
+        <button type='submit'>Generate List</button>
+      </form>
+    </div>
   </body>
-
-
 </html>

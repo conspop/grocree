@@ -7,5 +7,5 @@ module.exports = {
 };
 
 function index(req, res) {
-  res.redirect('/lists')
+  res.render('index', {user:req.user})
 }

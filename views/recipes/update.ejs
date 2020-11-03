@@ -2,26 +2,32 @@
 
   <body>
 
-    <h1><%= recipe.recipeName %></h1>
+    <div class='container-sm'>
 
-    <table>
-      <% ingredients.forEach(i => { %>
-        <tr>
-          <form action='/recipes/<%= recipe._id %>/ingredient/<%= i.ingredient._id %>?_method=DELETE' method='POST'>
-            <td><%= i.ingredient.ingredientName %></td>
-            <td><%= i.amount %></td>
-            <td><button type='submit'>Delete</button></td>
-          </form>
-        </tr>
-      <% }) %>
-    </table> 
-    <form action='/recipes/<%= recipe._id %>/ingredient' method='POST'>
-      <label>
-        <input type="text" name="ingredientName" autofocus>
-        <input type="text" name="amount">
-        <button type="submit">Add</button>
-      </label>
-    </form>
+      <h1><%= recipe.recipeName %></h1>
+
+      <table class='table table-sm'>
+        <% ingredients.forEach(i => { %>
+          <tr>
+            <form action='/recipes/<%= recipe._id %>/ingredient/<%= i.ingredient._id %>?_method=DELETE' method='POST'>
+              <td><%= i.ingredient.ingredientName %></td>
+              <td><%= i.amount %></td>
+              <td><button type='submit'>Delete</button></td>
+            </form>
+          </tr>
+        <% }) %>
+      </table> 
+      <form action='/recipes/<%= recipe._id %>/ingredient' method='POST'>
+        <label>
+          <input type="text" name="ingredientName" autofocus>
+          <input type="text" name="amount">
+          <button type="submit">Add</button>
+        </label>
+      </form>
+
+    </div>
+
+    
 
   </body>
 

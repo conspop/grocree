@@ -2,22 +2,35 @@
 
   <body>
 
-    <h1>Staples</h1>
-    <table>
-      <% user.staples.forEach(s => { %>
+    <div class='container-sm'>
+      <h1>Staples</h1>
+      <table class='table table-sm'>
         <tr>
-          <td><%= s.ingredient.ingredientName %></td>
-          <td><%= s.amount %></td>
+          <th>Ingredient</th>
+          <th>Amount</th>
+          <th></th>
         </tr>
-      <% }) %>
-    </table>
-    <form action='/staples' method='POST'>
-      <label>
-        <input type="text" name="ingredientName">
-        <input type="text" name="amount">
-        <button type="submit">Add</button>
-      </label>
-    </form>
+          <% user.staples.forEach(s => { %>
+            <tr>
+              <td><%= s.ingredient.ingredientName %></td>
+              <td><%= s.amount %></td>
+              <td>
+                <form action='staples/ingredient/<%= s.ingredient._id %>?_method=DELETE' method='POST'>
+                  <button type='submit'>Delete</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+      </table>
+      <form action='/staples' method='POST'>
+        <label>
+          <input required type="text" name="ingredientName" placeholder='ingredient'>
+          <input required type="text" name="amount" placeholder='amount'>
+          <button type="submit">Add</button>
+        </label>
+      </form>
+    </div>
+    
     
   </body>
 

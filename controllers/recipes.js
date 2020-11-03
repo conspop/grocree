@@ -8,7 +8,8 @@ module.exports = {
   edit,
   addIngredient,
   index,
-  deleteIngredient
+  deleteIngredient,
+  deleteRecipe
 };
 
 function index(req, res) {
@@ -35,21 +36,21 @@ function edit(req, res) {
 
 function addIngredient(req, res) {
   Recipe.findById(req.params.recipeId, function(err, recipe) {
-    Ingredient.findOne({ingredientName: req.body.ingredientName}, function(err, ingredient) {
-      console.log(ingredient)
-      if (ingredient === null) {
-        newIngredient = new Ingredient()
-        newIngredient.ingredientName = req.body.ingredientName
-        newIngredient.save(function(err, newIngredient) {
-          recipe.recipeIngredients.push({ingredient: newIngredient._id, amount: req.body.amount})
-          recipe.save()
-          res.redirect(`/recipes/${recipe._id}`)
-        })
+    User.findById(req.user._id).populate('ingredients').exec(function(err, user) {
+      let index = user.ingredients.findIndex(i => i.ingredientName === req.body.ingredientName)
+      if (index === -1) {
+        let newIngredient = new Ingredient();
+        newIngredient.ingredientName = req.body.ingredientName;
+        newIngredient.save();
+        recipe.recipeIngredients.push({ingredient: newIngredient._id, amount: req.body.amount})
+        recipe.save()
+        user.ingredients.push(newIngredient._id);
+        user.save();
       } else {
-        recipe.recipeIngredients.push({ingredient: ingredient._id, amount: req.body.amount})
-          recipe.save()
-          res.redirect(`/recipes/${recipe._id}`)
+        recipe.recipeIngredients.push({ingredient: user.ingredients[index]._id, amount: req.body.amount})
+        recipe.save()
       }
+      res.redirect(`/recipes/${recipe._id}`)
     })
   })
 }
@@ -61,6 +62,12 @@ function deleteIngredient(req, res) {
     recipe.save(function(err) {
       res.redirect(`/recipes/${recipe._id}`)
     })
+  })
+}
+
+function deleteRecipe(req, res) {
+  Recipe.findByIdAndDelete(req.params.recipeId, function(err) {
+    res.redirect('/recipes')
   })
 }
 

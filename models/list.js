@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const listSchema = new Schema({
   listName: String,
-  ingredients: [{ingredient: String, Amount: String, Section: String}]
+  listIngredients: [{ingredient:{type: Schema.Types.ObjectId, ref: 'Ingredient'}, amount: [String]}]
 });
 
 module.exports = mongoose.model('List', listSchema);

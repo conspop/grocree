@@ -3,7 +3,7 @@ var router = express.Router();
 
 var indexCtrl = require('../controllers/index')
 
-router.get('/', isLoggedIn, indexCtrl.index);
+router.get('/', indexCtrl.index);
 
 function isLoggedIn(req, res, next) {
   if ( req.isAuthenticated() ) return next();

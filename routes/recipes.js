@@ -6,6 +6,7 @@ var recipesCtrl = require('../controllers/recipes')
 router.get('/', isLoggedIn, recipesCtrl.index);
 router.get('/:recipeId', isLoggedIn, recipesCtrl.edit);
 
+router.delete('/:recipeId', recipesCtrl.deleteRecipe)
 router.delete('/:recipeId/ingredient/:ingredientId', recipesCtrl.deleteIngredient)
 
 router.post('/', recipesCtrl.create);

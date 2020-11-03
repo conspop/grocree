@@ -2,15 +2,30 @@
 
   <body>
 
-    <h1>Lists</h1>
-    <table>
-      <% user.lists.forEach(s => { %>
+    <div class='container-sm'>
+      <h1>Lists</h1>
+      <table class='table table-sm'>
         <tr>
-          <td><%= s.listName %></td>
+          <th>List</th>
+          <th></th>
+        </tr>
+      <% user.lists.forEach(l => { %>
+        <tr>
+          <td><a href='/lists/<%= l._id %>'><%= l.listName %></a></td>
+          <td>
+            <form action='lists/<%= l._id %>?_method=DELETE' method='POST'>
+              <button type='submit'>Delete</button>
+            </form>
+          </td>
         </tr>
       <% }) %>
-    </table>
-    <a href='/lists/new'>New List</a>
+      </table>
+      <a href='/lists/new'>New List</a>
+    </div>
+
+    
+
+
 
   </body>
 

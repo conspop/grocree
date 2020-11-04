@@ -11,8 +11,7 @@ module.exports = {
 
 function addStaple(req, res) {
   User.findById(req.user._id).populate('ingredients').exec(function(err, user) {
-    console.log(user)
-    let index = user.ingredients.findIndex(i => i.ingredientName === req.body.ingredientName)
+    let index = user.ingredients.findIndex(i => i.ingredientName.toLowerCase() === req.body.ingredientName.toLowerCase())
     if (index === -1) {
       let newIngredient = new Ingredient();
       newIngredient.ingredientName = req.body.ingredientName;
@@ -30,6 +29,11 @@ function addStaple(req, res) {
 
 function index(req, res) {
   User.findById(req.user._id).populate('staples').populate('staples.ingredient').exec(function(err, user) {
+    console.log(user.staples[0].ingredient.ingredientName > user.staples[1].ingredient.ingredientName)
+    user.staples.sort((a,b) => {
+      if (a.ingredient.ingredientName.toLowerCase() > b.ingredient.ingredientName.toLowerCase()) return 1
+      else if (a.ingredient.ingredientName.toLowerCase() < b.ingredient.ingredientName.toLowerCase()) return -1
+    })
     res.render('staples/index', {user})
   })
 }

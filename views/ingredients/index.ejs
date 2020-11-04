@@ -1,0 +1,29 @@
+<%- include('../partials/header') %>  
+
+  <body>
+
+    <div class='container-sm'>
+      <h1>Ingredients</h1>
+      <table class='table table-sm'>
+        <tr>
+          <th>Ingredient</th>
+          <th>Section</th>
+
+        </tr>
+          <% user.ingredients.forEach(i => { %>
+            <tr>
+              <form action='/ingredients/<%= i._id %>?_method=PUT' method='POST'>
+                <td><input name='ingredientName' type='text' value='<%= i.ingredientName %>'></td>
+                <td><input name='section' type='text' value='<%= i.section %>'></td>
+                <td><button type='submit'>Update</button></td>
+              </form>
+            </tr>
+          <% }) %>
+      </table>
+    </div>
+    
+    
+  </body>
+
+
+</html>

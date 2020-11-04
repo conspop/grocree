@@ -11,7 +11,9 @@ module.exports = {
   index,
   show,
   deleteIngredient,
-  deleteList
+  deleteList,
+  updateAmount,
+  removeIngredient
 };
 
 function index(req, res) {
@@ -73,20 +75,22 @@ function edit(req, res) {
 }
 
 function addIngredient(req, res) {
-  List.findById(req.params.listId, function(err, list) {
-    Ingredient.findOne({ingredientName: req.body.ingredientName}, function(err, ingredient) {
-      if (ingredient === null) {
-        newIngredient = new Ingredient()
-        newIngredient.ingredientName = req.body.ingredientName
-        newIngredient.save(function(err, newIngredient) {
-          list.listIngredients.push({ingredient: newIngredient._id, amount: req.body.amount})
-          list.save()
-          res.redirect(`/lists/${list._id}`)
-        })
-      } else {
-        list.listIngredients.push({ingredient: ingredient._id, amount: req.body.amount})
+  List.findById(req.body.list, function(err, list) {
+    User.findById(req.user._id).populate('ingredients').exec(function(err, user) {
+      let index = user.ingredients.findIndex(i => i.ingredientName.toLowerCase() === req.body.ingredient.toLowerCase())
+      if (index === -1) {
+        let newIngredient = new Ingredient();
+        newIngredient.ingredientName = req.body.ingredient;
+        newIngredient.save();
+        list.listIngredients.push({ingredient: newIngredient._id, amount: req.body.amount})
         list.save()
-        res.redirect(`/lists/${list._id}`)
+        user.ingredients.push(newIngredient._id)
+        user.save()
+        res.json({'info': [newIngredient._id, list.listIngredients[list.listIngredients.length - 1]._id]})
+      } else {
+        list.listIngredients.push({ingredient: user.ingredients[index]._id, amount:req.body.amount})
+        list.save()
+        res.json({'ingredientId': user.ingredients[index]._id, 'section': user.ingredients[index].section})
       }
     })
   })
@@ -94,6 +98,13 @@ function addIngredient(req, res) {
 
 function show(req, res) {
   List.findById(req.params.listId).populate('listIngredients.ingredient').exec(function(err, list) {
+    list.listIngredients.sort(function(a, b) {
+      console.log(a.ingredient.section, b.ingredient.section)
+      if (a.ingredient.section === undefined) return 1
+      if (b.ingredient.section === undefined) return -1
+      if (a.ingredient.section > b.ingredient.section) return -1
+      else return 1
+    })
     res.render('lists/show', {user:req.user, list})
   })
 }
@@ -113,4 +124,27 @@ function deleteList(req, res) {
     res.redirect('/lists')
   })
 }
+
+function updateAmount(req, res) {
+  List.findById(req.body.list, function(err, list) {
+    let index = list.listIngredients.findIndex(i => String(i._id) === (req.body.ingredient))
+    list.listIngredients[index].amount = req.body.updatedAmount;
+    list.save(function(err) {
+      res.json('ok!');
+    })
+  })
+}
+
+function removeIngredient(req, res) {
+  console.log('got here')
+  List.findById(req.body.list, function(err, list) {
+    let index = list.listIngredients.findIndex(i => String(i._id) === (req.body.ingredient))
+    console.log(list.listIngredients[index])
+    list.listIngredients[index].remove()
+    list.save(function(err) {
+      res.json('ok!');
+    })
+  })
+}
+
 

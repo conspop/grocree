@@ -1,34 +1,35 @@
 <%- include('../partials/header') %>  
 
+<script defer src="/javascripts/listshow.js"></script>
+
   <body>
+
     <div class='container'>
 
       <h1><%= list.listName %></h1>
 
-      <table class='table table-sm'>
+      <table id='ingredients-table' class='table table-sm'>
         <tr>
           <th>Ingredient</th>
+          <th>Section (<a href='/lists/<%= list._id %>'>Sort</a>)</th>
           <th>Amount</th>
           <th></th>
         </tr>
         <% list.listIngredients.forEach(i => { %>
           <tr>
             <td><%= i.ingredient.ingredientName %></td>
-            <td><%= i.amount %></td>
-            <td>
-              <form action='/lists/<%= list._id %>/ingredient/<%= i.ingredient._id %>?_method=DELETE' method='POST'>
-                <button type='submit'>Delete</button>
-              </form>
-            </td>
+            <td><input data-list=<%= list._id %> data-ingredient=<%= i.ingredient._id %> class='ingredientSection' type='text' value='<%= i.ingredient.section %>'></td>
+            <td><input data-list=<%= list._id %> data-ingredient=<%= i._id %> class='ingredientAmount' type='text' value='<%= i.amount %>'></td>
+            <td class='delete' data-list=<%= list._id %> data-ingredient=<%= i._id %>>X</td>
           </tr>
         <% }) %>
   
       </table>
       <form action='/lists/<%= list._id %>/ingredient' method='POST'>
         <label>
-          <input required placeholder='Ingredient' type="text" name="ingredientName" autofocus>
-          <input required placeholder='Amount' type="text" name="amount">
-          <button type="submit">Add</button>
+          <input id='add-ingredient' required placeholder='Ingredient' type="text" name="ingredientName" autofocus>
+          <input id='add-amount' required placeholder='Amount' type="text" name="amount">
+          <div data-list=<%= list._id %> id='add-button'>Add</div>
         </label>
       </form>
 

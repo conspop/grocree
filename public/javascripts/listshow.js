@@ -90,14 +90,16 @@ async function addIngredient(e) {
   })
   
   let newRow = tableEl.insertRow()
-  newRow.insertCell().innerText = ingredient
 
+  newRow.insertAdjacentHTML('beforeend', `<td class='new-delete' data-list=${list} data-ingredient=${listIngredientId}>X</td>`)
+  newRow.insertCell().innerText = ingredient
   newRow.insertAdjacentHTML('beforeend', `<td><input data-list=${list} data-ingredient=${ingredientId} class='newIngredientSection' type='text' value=${section}></td>`)
   newRow.insertAdjacentHTML('beforeend', `<td><input data-list=${list} data-ingredient=${listIngredientId} class='newIngredientAmount' type='text' value='${amount}'></td>`)
-  newRow.insertAdjacentHTML('beforeend', `<td class='new-delete' data-list=${list} data-ingredient=${listIngredientId}>X</td>`)
 
   document.querySelectorAll('.newIngredientSection').forEach(e => e.addEventListener('click', updateSection))
   document.querySelectorAll('.new-delete').forEach(e => e.addEventListener('click', removeIngredient))
+
+  addIngredientEl.focus()
 
   addIngredientEl.value = ''
   addAmountEl.value = ''

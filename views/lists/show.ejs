@@ -27,13 +27,13 @@
       <form class='pin' action='/lists/<%= list._id %>/ingredient' method='POST'>
         <div class='row'>
           <div class='pin-40 text-center'>
-            <input id='add-ingredient' required placeholder='Ingredient' type="text" name="ingredientName" autofocus>
+            <input autocomplete="off" id='add-ingredient' required placeholder='Ingredient' type="text" name="ingredientName" autofocus>
           </div>
           <div class='pin-40 text-center'>
-            <input id='add-amount' required placeholder='Amount' type="text" name="amount">
+            <input autocomplete="off"  id='add-amount' required placeholder='Amount' type="text" name="amount">
           </div>
           <div class='pin-20 text-center'>
-            <div data-list=<%= list._id %> id='add-button'>+</div>
+            <div data-list=<%= list._id %> id='add-button'>add</div>
           </div>          
         </div>
       </form>

@@ -29,7 +29,6 @@ function addStaple(req, res) {
 
 function index(req, res) {
   User.findById(req.user._id).populate('staples').populate('staples.ingredient').exec(function(err, user) {
-    console.log(user.staples[0].ingredient.ingredientName > user.staples[1].ingredient.ingredientName)
     user.staples.sort((a,b) => {
       if (a.ingredient.ingredientName.toLowerCase() > b.ingredient.ingredientName.toLowerCase()) return 1
       else if (a.ingredient.ingredientName.toLowerCase() < b.ingredient.ingredientName.toLowerCase()) return -1

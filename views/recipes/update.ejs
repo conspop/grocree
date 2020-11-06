@@ -17,12 +17,18 @@
           </tr>
         <% }) %>
       </table> 
-      <form action='/recipes/<%= recipe._id %>/ingredient' method='POST'>
-        <label>
-          <input type="text" name="ingredientName" autofocus>
-          <input type="text" name="amount">
-          <button type="submit">Add</button>
-        </label>
+      <form class='pin' action='/recipes/<%= recipe._id %>/ingredient' method='POST'>
+        <div class='row'>
+          <div class='pin-40 text-center'>
+            <input type="text" name="ingredientName" autofocus>
+          </div>
+          <div class='pin-40 text-center'>
+            <input type="text" name="amount">
+          </div>
+          <div class='pin-20 text-center'>
+            <button type="submit">+</button>
+          </div>          
+        </div>
       </form>
 
     </div>

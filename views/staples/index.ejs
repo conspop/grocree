@@ -6,31 +6,37 @@
       <h1>Staples</h1>
       <table class='table table-sm'>
         <tr>
+          <th class='delete-col'></th>
           <th>Ingredient</th>
           <th>Amount</th>
-          <th></th>
         </tr>
           <% user.staples.forEach(s => { %>
             <tr>
-              <td><%= s.ingredient.ingredientName %></td>
-              <td><%= s.amount %></td>
               <td>
                 <form action='staples/ingredient/<%= s.ingredient._id %>?_method=DELETE' method='POST'>
-                  <button type='submit'>Delete</button>
+                  <button type='submit'>X</button>
                 </form>
               </td>
+              <td><%= s.ingredient.ingredientName %></td>
+              <td><%= s.amount %></td>
             </tr>
           <% }) %>
       </table>
-      <form action='/staples' method='POST'>
-        <label>
-          <input required type="text" name="ingredientName" placeholder='ingredient'>
-          <input required type="text" name="amount" placeholder='amount'>
-          <button type="submit">Add</button>
-        </label>
-      </form>
+      
     </div>
-    
+    <form class='pin' action='/staples' method='POST'>
+      <div class='row'>
+        <div class='pin-40 text-center'>
+          <input autocomplete='off' required type="text" name="ingredientName" placeholder='ingredient'>
+        </div>
+        <div class='pin-40 text-center'>
+          <input autocomplete='off' required type="text" name="amount" placeholder='amount'>
+        </div>
+        <div class='pin-20 text-center'>
+          <button type="submit">+</button>
+        </div>          
+      </div>
+    </form>
     
   </body>
 

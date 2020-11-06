@@ -1,9 +1,97 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+html {
+  font-size: 14px;
 }
 
-a {
-  color: #00B7FF;
+.navbar {
+  position:sticky;
+  top:0px;
+}
+
+.pin-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pin-top-2 {
+  position: sticky;
+  top:49px;
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  margin-bottom:15px;
+}
+
+.subnav {
+  margin: 0 5px;
+}
+
+.pin-top-left {
+  display: flex;
+  justify-content: flex-start;
+}
+.pin-top-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.delete-col {
+  width: 5%;
+}
+
+.ingredient-col {
+  width: 40%;
+}
+
+.section-col {
+  width: 25%;
+}
+
+.amount-col {
+  width: 30%;
+}
+
+/* Bottom Pin */
+
+.row {
+  width:90%;
+  margin: 0 auto;
+  padding: 20px 0;
+  align-items: center;
+}
+
+.pin {
+  position: sticky;
+  bottom: 0px;
+  background: white;
+  z-index: 0;
+}
+
+.pin-40 {
+  width: 38%;
+  margin: 2.5px;
+}
+
+.pin-20 {
+  width:20%;
+}
+
+input {
+  width: 100%;
+  border: none;
+  background: lightgray;
+  padding: 3px;
+}
+
+button {
+  background-color: white;
+  border: none;
+}
+
+/* List Page */
+
+@media only screen and (max-width: 400px) {
+  .name {
+    display:none;
+  }
 }
 

@@ -6,26 +6,31 @@
       <h1>Recipes</h1>
       <table class='table table-sm'>
           <tr>
+            <th class='delete-col'></th>
             <th>Recipe</th>
-            <th></th>
           </tr>
         <% user.recipes.forEach(r => { %>
           <tr>
-            <td><a href='/recipes/<%= r._id %>'><%= r.recipeName %></a></td>
             <td>
               <form action='recipes/<%= r._id %>?_method=DELETE' method='POST'>
-                <button type='submit'>Delete</button>
+                <button type='submit'>X</button>
               </form>
             </td>
+            <td><a href='/recipes/<%= r._id %>'><%= r.recipeName %></a></td>
           </tr>
         <% }) %>
       </table>
-      <form action='recipes/' method='POST'>
-        <label>Recipe Name
-          <input required placeholder='Recipe Name' type='text' name='recipeName'>
-        </label>
-        <button type='submit'>New Recipe</button>
+      <form class='pin' action='recipes/' method='POST'>
+        <div class='row'>
+          <div class='pin-40 text-center'>
+            <input required placeholder='Recipe Name' type='text' name='recipeName'>
+          </div>
+          <div class='pin-20 text-center'>
+            <button type="submit">+</button>
+          </div>          
+        </div>
       </form>
+
     </div>
 
   </body>

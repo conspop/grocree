@@ -44,16 +44,18 @@ function create(req, res) {
         })
       }
       let recipes = (typeof(req.body.recipes) === 'string') ? req.body.recipes.split() : req.body.recipes;
-      recipes.forEach(r => {
-        user.recipes[r].recipeIngredients.forEach(rI => {
-          let ingredient = (ingredients.find(i => i._id.equals(rI.ingredient)))
-          if (groceryList[ingredient._id]) {
-            groceryList[ingredient._id].push(rI.amount)
-          } else {
-            groceryList[ingredient._id]= [rI.amount]
-          }
+      if (recipes) { 
+        recipes.forEach(r => {
+          user.recipes[r].recipeIngredients.forEach(rI => {
+            let ingredient = (ingredients.find(i => i._id.equals(rI.ingredient)))
+            if (groceryList[ingredient._id]) {
+              groceryList[ingredient._id].push(rI.amount)
+            } else {
+              groceryList[ingredient._id]= [rI.amount]
+            }
+          })
         })
-      })
+      }
       groceryList = Object.entries(groceryList)
       groceryList.forEach(g => {
         newList.listIngredients.push({ingredient: g[0], amount: g[1]})

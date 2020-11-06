@@ -2,37 +2,41 @@
 
 <script defer src="/javascripts/listshow.js"></script>
 
-  <body>
-
     <div class='container'>
 
       <h1><%= list.listName %></h1>
 
       <table id='ingredients-table' class='table table-sm'>
         <tr>
-          <th>Ingredient</th>
-          <th>Section (<a href='/lists/<%= list._id %>'>Sort</a>)</th>
-          <th>Amount</th>
-          <th></th>
+          <th class='delete-col'></th>
+          <th class='ingredient-col'>Ingredient</th>
+          <th class='section-col'>Section (<a href='/lists/<%= list._id %>'>Sort</a>)</th>
+          <th class='amount-col'>Amount</th>
         </tr>
         <% list.listIngredients.forEach(i => { %>
           <tr>
-            <td><%= i.ingredient.ingredientName %></td>
-            <td><input data-list=<%= list._id %> data-ingredient=<%= i.ingredient._id %> class='ingredientSection' type='text' value='<%= i.ingredient.section %>'></td>
-            <td><input data-list=<%= list._id %> data-ingredient=<%= i._id %> class='ingredientAmount' type='text' value='<%= i.amount %>'></td>
             <td class='delete' data-list=<%= list._id %> data-ingredient=<%= i._id %>>X</td>
+            <td class='ingredient'><%= i.ingredient.ingredientName %></td>
+            <td class='ingredient-section'><input data-list=<%= list._id %> data-ingredient=<%= i.ingredient._id %> class='ingredientSection' type='text' value='<%= i.ingredient.section %>'></td>
+            <td class='amount'><input data-list=<%= list._id %> data-ingredient=<%= i._id %> class='ingredientAmount' type='text' value='<%= i.amount %>'></td>
           </tr>
         <% }) %>
   
       </table>
-      <form action='/lists/<%= list._id %>/ingredient' method='POST'>
-        <label>
-          <input id='add-ingredient' required placeholder='Ingredient' type="text" name="ingredientName" autofocus>
-          <input id='add-amount' required placeholder='Amount' type="text" name="amount">
-          <div data-list=<%= list._id %> id='add-button'>Add</div>
-        </label>
-      </form>
 
+      <form class='pin' action='/lists/<%= list._id %>/ingredient' method='POST'>
+        <div class='row'>
+          <div class='pin-40 text-center'>
+            <input id='add-ingredient' required placeholder='Ingredient' type="text" name="ingredientName" autofocus>
+          </div>
+          <div class='pin-40 text-center'>
+            <input id='add-amount' required placeholder='Amount' type="text" name="amount">
+          </div>
+          <div class='pin-20 text-center'>
+            <div data-list=<%= list._id %> id='add-button'>+</div>
+          </div>          
+        </div>
+      </form>
     </div>
     
 

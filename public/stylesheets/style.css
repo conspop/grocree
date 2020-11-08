@@ -105,6 +105,10 @@
   background-color: #3c6E71;
 }
 
+.pin-10 a {
+  margin: 0;
+}
+
 input {
   width: 100%;
   border: 2px solid white;

@@ -204,6 +204,25 @@ button {
   margin-right: 0.3m;
 }
 
+.name {
+  color:white;
+}
+
+li {
+  list-style:none;
+}
+
+@media only screen and (min-width: 500px) {
+  .container-sm {
+    width: 50%;
+  }
+
+  .pin-bottom {
+    padding-left: 25%;
+    padding-right:25%;
+  }
+}
+
 
 
 

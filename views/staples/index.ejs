@@ -3,7 +3,6 @@
   <body>
 
     <div class='container-sm'>
-      <h1>Staples</h1>
       <table class='table table-sm'>
         <tr>
           <th class='delete-col'></th>
@@ -14,7 +13,7 @@
             <tr>
               <td>
                 <form action='staples/ingredient/<%= s.ingredient._id %>?_method=DELETE' method='POST'>
-                  <button type='submit'>X</button>
+                  <button type='submit'><i class="fas fa-times"></i></button>
                 </form>
               </td>
               <td><%= s.ingredient.ingredientName %></td>
@@ -24,18 +23,16 @@
       </table>
       
     </div>
-    <form class='pin' action='/staples' method='POST'>
-      <div class='row'>
-        <div class='pin-40 text-center'>
+    <form class='pin-bottom' action='/staples' method='POST'>
+        <div class='pin-45 text-center'>
           <input autocomplete='off' required type="text" name="ingredientName" placeholder='ingredient'>
         </div>
-        <div class='pin-40 text-center'>
+        <div class='pin-45 text-center'>
           <input autocomplete='off' required type="text" name="amount" placeholder='amount'>
         </div>
-        <div class='pin-20 text-center'>
-          <button type="submit">+</button>
+        <div class='pin-10 text-center'>
+          <button type="submit"><i class="fas fa-plus"></i></button>
         </div>          
-      </div>
     </form>
     
   </body>

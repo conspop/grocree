@@ -4,34 +4,39 @@
 
     <div class='container-sm'>
 
-      <h1><%= recipe.recipeName %></h1>
+      <h1 class='text-center'><%= recipe.recipeName %></h1>
 
       <table class='table table-sm'>
+        <tr>
+          <th class='delete-col'></th>
+          <th>Ingredient</th>
+          <th>Amount</th>
+        </tr>
         <% ingredients.forEach(i => { %>
           <tr>
             <form action='/recipes/<%= recipe._id %>/ingredient/<%= i.ingredient._id %>?_method=DELETE' method='POST'>
+              <td><button type='submit'><i class="fas fa-times"></i></button></td>
               <td><%= i.ingredient.ingredientName %></td>
               <td><%= i.amount %></td>
-              <td><button type='submit'>Delete</button></td>
             </form>
           </tr>
         <% }) %>
       </table> 
-      <form class='pin' action='/recipes/<%= recipe._id %>/ingredient' method='POST'>
-        <div class='row'>
-          <div class='pin-40 text-center'>
-            <input type="text" name="ingredientName" autofocus>
-          </div>
-          <div class='pin-40 text-center'>
-            <input type="text" name="amount">
-          </div>
-          <div class='pin-20 text-center'>
-            <button type="submit">+</button>
-          </div>          
+    </div>
+
+      <form class='pin-bottom' action='/recipes/<%= recipe._id %>/ingredient' method='POST'>
+        <div class='pin-45 text-center'>
+          <input autocomplete='off' required type="text" name="ingredientName" autofocus placeholder='ingredient'>
         </div>
+        <div class='pin-45 text-center'>
+          <input autocomplete='off' required type="text" name="amount" placeholder='amount'>
+        </div>
+        <div class='pin-10 text-center'>
+          <button type="submit"><i class="fas fa-plus"></i></button>
+        </div>          
       </form>
 
-    </div>
+  
 
     
 

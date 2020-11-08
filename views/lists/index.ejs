@@ -1,25 +1,29 @@
 <%- include('../partials/header') %>  
 
     <div class='container-sm'>
-      <h1>Lists</h1>
       <table class='table table-sm'>
-        <tr>
-          <th></th>
-          <th>List</th>
-        </tr>
       <% user.lists.forEach(l => { %>
         <tr>
-          <td class='delete-col'>
+          <td class='big-list'>
             <form action='lists/<%= l._id %>?_method=DELETE' method='POST'>
-              <button type='submit'>X</button>
+              <button type='submit'><i class="fas fa-times"></i></button>
             </form>
           </td>
-          <td><a href='/lists/<%= l._id %>'><%= l.listName %></a></td>
+          <td class='big-list'><a href='/lists/<%= l._id %>'><%= l.listName %></a></td>
         </tr>
       <% }) %>
       </table>
-      <a href='/lists/new'>New List</a>
-    </div>
+    </div>  
+      <form class='pin-bottom'>
+        <div class='pin-90 text-center'>
+          Generate New List
+        </div>
+        <div class='pin-10 text-center'>
+          <a href='/lists/new'><i class="fas fa-plus"></i></a>
+        </div>
+      </div>
+      
+    
 
     
 

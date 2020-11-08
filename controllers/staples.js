@@ -33,7 +33,7 @@ function index(req, res) {
       if (a.ingredient.ingredientName.toLowerCase() > b.ingredient.ingredientName.toLowerCase()) return 1
       else if (a.ingredient.ingredientName.toLowerCase() < b.ingredient.ingredientName.toLowerCase()) return -1
     })
-    res.render('staples/index', {user})
+    res.render('staples/index', {user, page: 'staples'})
   })
 }
 

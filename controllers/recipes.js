@@ -14,7 +14,7 @@ module.exports = {
 
 function index(req, res) {
   User.findById(req.user._id).populate('recipes').exec(function(err, user) {
-    res.render('recipes/index', {user})
+    res.render('recipes/index', {user, page: 'recipes'})
   })
 }
 
@@ -30,7 +30,7 @@ function create(req, res) {
 function edit(req, res) {
   Recipe.findById(req.params.recipeId).populate('recipeIngredients.ingredient').exec(function(err, recipe) {
     let ingredients = recipe.recipeIngredients
-    res.render('recipes/update', {recipe, ingredients, user: req.user})
+    res.render('recipes/update', {recipe, ingredients, user: req.user, page:'recipes'})
   })
 }
 

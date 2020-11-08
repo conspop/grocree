@@ -65,10 +65,8 @@ async function removeIngredient(e) {
       ingredient: ingredient
     })
   }).then(res => res.json())
-  e.target.parentElement.remove()
+  e.target.parentElement.parentElement.remove()
 }
-
-let ingredientId = ''
 
 async function addIngredient(e) {
   let ingredient = addIngredientEl.value

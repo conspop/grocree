@@ -21,11 +21,12 @@
   position: sticky;
   top:49px;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   background-color: white;
   padding:10px 0;
   background-color: #D9D9D9;
   list-style: none;
+  margin-bottom: 25px;
 }
 
 .pin-top-2 a {
@@ -47,20 +48,22 @@
 }
 
 .delete-col {
-  width: 5%;
+  width: 10%;
 }
 
-.ingredient-col {
-  width: 40%;
+.ingredients-col{
+  width:40%;
 }
 
-.section-col {
-  width: 25%;
+.section-col{
+  width:20%;
 }
 
-.amount-col {
-  width: 30%;
+.amount-col{
+  width:30%;
 }
+
+
 
 /* Bottom Pin */
 
@@ -78,10 +81,17 @@
   z-index: 0;
   width:100%;
   display:flex;
-  justify-content:space-evenly;
+  justify-content:space-between;
   padding: 10px 10px;
   align-items: center;
   background-color: #3C6E71;
+  color: white;
+  font-size: 1.2em;
+}
+
+.pin-90 {
+  width: 87%;
+  margin: 2.5px;
 }
 
 .pin-45 {
@@ -133,4 +143,58 @@ button {
   color:white;
   background-color: #3c6E71;
 }
+
+.active-page {
+  font-weight: 700;
+}
+
+.big-list a {
+  font-size: 1.5em;
+  color: #3C6E71
+}
+
+.big-list button {
+  height: 40px;
+}
+
+.pin-bottom a {
+  color: white;
+  font-size: 1em;
+  margin-left: 15px;
+  height: 67px;
+}
+
+.form-group input {
+  background-color: white;
+  border: 2px solid black;
+  color: black;
+}
+
+.generate-button {
+  background-color: #3C6E71;
+  text-align: center;
+  color:white;
+  height: 67px;
+  font-size:1.2em;
+}
+
+#ingredients-table input {
+  padding:0;
+  background-color: white;
+  border: 1px solid #3C6E71;
+  color: #3C6E71;
+  text-align:center;
+}
+
+#ingredients-table td {
+  padding-left: 0.05em;
+  padding-right: 0.05em;
+}
+
+#ingredients-table.delete {
+  margin-right: 0.3m;
+}
+
+
+
 

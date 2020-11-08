@@ -12,7 +12,7 @@ router.delete('/removeingredient', listsCtrl.removeIngredient)
 router.delete('/:listId', listsCtrl.deleteList)
 router.delete('/:listId/ingredient/:ingredientId', listsCtrl.deleteIngredient)
 
-router.put('/addingredient', isLoggedIn, listsCtrl.addIngredient)
+router.post('/:listId/ingredient', isLoggedIn, listsCtrl.addIngredient)
 
 router.post('/generated', listsCtrl.create);
 router.post('/updateamount', listsCtrl.updateAmount)

@@ -104,7 +104,7 @@ body {
 }
 
 .pin-10 {
-  width:10%;
+  width:7%;
   height:30px;
   background-color: #3c6E71;
 }
@@ -141,6 +141,7 @@ button {
 
 .pin-10 button {
   background-color: #3C6E71;
+  padding:0;
 }
 
 .fa-times {

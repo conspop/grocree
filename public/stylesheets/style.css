@@ -215,6 +215,10 @@ li {
   list-style:none;
 }
 
+.container-sm {
+  margin-top:120px;
+}
+
 @media only screen and (min-width: 500px) {
   .container-sm {
     width: 50%;

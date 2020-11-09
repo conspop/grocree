@@ -3,7 +3,8 @@ body {
 }
 
 .navbar {
-  position:sticky;
+  position: fixed;
+  width: 100%;
   top:0px;
   background-color: #284B63;
 }
@@ -22,7 +23,8 @@ body {
 }
 
 .pin-top-2 {
-  position: sticky;
+  position: fixed;
+  width: 100%;
   top:49px;
   display: flex;
   justify-content: space-evenly;
@@ -79,7 +81,8 @@ body {
 }
 
 .pin-bottom {
-  position: sticky;
+  position: fixed;
+  width: 100%;
   bottom: 0px;
   background: white;
   z-index: 0;

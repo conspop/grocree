@@ -58,18 +58,16 @@ body {
 }
 
 .ingredients-col{
-  width:40%;
+  width:35%;
 }
 
 .section-col{
-  width:20%;
+  width:27.5%;
 }
 
 .amount-col{
-  width:30%;
+  width:27.5%;
 }
-
-
 
 /* Bottom Pin */
 
@@ -176,6 +174,16 @@ button {
   height: 67px;
 }
 
+#generate {
+  height: 67px;
+  justify-content: center;
+}
+
+#generate:active {
+  color:white;
+  text-decoration: none;
+}
+
 .form-group input {
   background-color: white;
   border: 2px solid black;
@@ -193,14 +201,7 @@ button {
 #ingredients-table input {
   padding:0;
   background-color: white;
-  border: 1px solid #3C6E71;
-  color: #3C6E71;
-  text-align:center;
-}
-
-#ingredients-table td {
-  padding-left: 0.05em;
-  padding-right: 0.05em;
+  color: black;
 }
 
 #ingredients-table.delete {

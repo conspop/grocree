@@ -88,7 +88,7 @@ function addIngredient(req, res) {
         list.save()
         user.ingredients.push(newIngredient._id)
         user.save()
-        res.json({'info': [newIngredient._id, list.listIngredients[list.listIngredients.length - 1]._id]})
+        res.redirect(`/lists/${req.params.listId}`)
       } else {
         list.listIngredients.push({ingredient: user.ingredients[index]._id, amount:req.body.amount})
         list.save()

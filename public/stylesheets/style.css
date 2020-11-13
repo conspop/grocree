@@ -120,6 +120,7 @@ input {
   background-color: #3C6E71;
   color:white;
   padding: 5px;
+  -webkit-appearance: none;
 }
 
 button {

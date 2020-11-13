@@ -1,18 +1,22 @@
 <%- include('../partials/header') %>  
 
     <div class='container-sm'>
-      <table class='table table-sm'>
-      <% user.lists.forEach(l => { %>
-        <tr>
-          <td class='big-list'>
-            <form action='lists/<%= l._id %>?_method=DELETE' method='POST'>
-              <button type='submit'><i class="fas fa-times"></i></button>
-            </form>
-          </td>
-          <td class='big-list'><a href='/lists/<%= l._id %>'><%= l.listName %></a></td>
-        </tr>
-      <% }) %>
-      </table>
+      <% if (user.lists.length === 0) { %>
+        <h5 class='text-center'>You have no lists. Generate one below.</h5> 
+      <% } else {%>
+        <table class='table table-sm'>
+        <% user.lists.forEach(l => { %>
+          <tr>
+            <td class='big-list'>
+              <form action='lists/<%= l._id %>?_method=DELETE' method='POST'>
+                <button type='submit'><i class="fas fa-times"></i></button>
+              </form>
+            </td>
+            <td class='big-list'><a href='/lists/<%= l._id %>'><%= l.listName %></a></td>
+          </tr>
+        <% }) %>
+        </table>
+      <% } %>
     </div>  
     <a class='pin-bottom' id='generate' href='/lists/new'>Generate New List</i></a>
 

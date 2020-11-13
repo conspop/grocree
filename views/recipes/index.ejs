@@ -3,18 +3,22 @@
   <body>
     
     <div class='container-sm'>
-      <table class='table table-sm'>
-        <% user.recipes.forEach(r => { %>
-          <tr>
-            <td class='big-list'>
-              <form action='recipes/<%= r._id %>?_method=DELETE' method='POST'>
-                <button type='submit'><i class="fas fa-times"></i></button>
-              </form>
-            </td>
-            <td class='big-list'><a href='/recipes/<%= r._id %>'><%= r.recipeName %></a></td>
-          </tr>
-        <% }) %>
-      </table>
+      <% if (user.recipes.length === 0) { %>
+        <h5 class='text-center'>You have no recipes. Create one below.</h5> 
+      <% } else {%>
+        <table class='table table-sm'>
+          <% user.recipes.forEach(r => { %>
+            <tr>
+              <td class='big-list'>
+                <form action='recipes/<%= r._id %>?_method=DELETE' method='POST'>
+                  <button type='submit'><i class="fas fa-times"></i></button>
+                </form>
+              </td>
+              <td class='big-list'><a href='/recipes/<%= r._id %>'><%= r.recipeName %></a></td>
+            </tr>
+          <% }) %>
+        </table>
+      <% } %>
     </div>  
       <form class='pin-bottom' action='recipes/' method='POST'>
         <div class='pin-90 text-center'>

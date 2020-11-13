@@ -21,12 +21,16 @@
           </div>
           <div class='form-group'>
             <h5>Which recipes would you like to include?</h5>
-            <div class='form-check'>
-              <% user.recipes.forEach((r,idx) => { %>
-                <input class='form-check-input' name='recipes' type='checkbox' value=<%= idx %> %>>
-                <label class='form-check-label' for="<%= idx %>"><%= r.recipeName %></label><br>
-              <% }) %>
-            </div>
+            <% if (user.recipes.length > 0) { %>
+              <div class='form-check'>
+                <% user.recipes.forEach((r,idx) => { %>
+                  <input class='form-check-input' name='recipes' type='checkbox' value=<%= idx %> %>>
+                  <label class='form-check-label' for="<%= idx %>"><%= r.recipeName %></label><br>
+                <% }) %>
+              </div>
+            <% } else { %>
+              <p>You have no recipes.</p>
+            <% } %>
           </div>
         </div>  
         <button class='pin-bottom' id='generate' type='submit'>Generate</button>

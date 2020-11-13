@@ -76,28 +76,6 @@ function edit(req, res) {
   })
 }
 
-// function addIngredient(req, res) {
-//   List.findById(req.body.list, function(err, list) {
-//     User.findById(req.user._id).populate('ingredients').exec(function(err, user) {
-//       let index = user.ingredients.findIndex(i => i.ingredientName.toLowerCase() === req.body.ingredient.toLowerCase())
-//       if (index === -1) {
-//         let newIngredient = new Ingredient();
-//         newIngredient.ingredientName = req.body.ingredient;
-//         newIngredient.save();
-//         list.listIngredients.push({ingredient: newIngredient._id, amount: req.body.amount})
-//         list.save()
-//         user.ingredients.push(newIngredient._id)
-//         user.save()
-//         res.json({'info': [newIngredient._id, list.listIngredients[list.listIngredients.length - 1]._id]})
-//       } else {
-//         list.listIngredients.push({ingredient: user.ingredients[index]._id, amount:req.body.amount})
-//         list.save()
-//         res.json({'ingredientId': user.ingredients[index]._id, 'section': user.ingredients[index].section})
-//       }
-//     })
-//   })
-// }
-
 function addIngredient(req, res) {
   List.findById(req.params.listId, function(err, list) {
     User.findById(req.user._id).populate('ingredients').exec(function(err, user) {
@@ -126,8 +104,8 @@ function show(req, res) {
       console.log(a.ingredient.section, b.ingredient.section)
       if (a.ingredient.section === undefined) return 1
       if (b.ingredient.section === undefined) return -1
-      if (a.ingredient.section > b.ingredient.section) return -1
-      else return 1
+      if (a.ingredient.section > b.ingredient.section) return 1
+      else return -1
     })
     res.render('lists/show', {user:req.user, list, page:'lists'})
   })

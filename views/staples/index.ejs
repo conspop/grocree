@@ -3,24 +3,28 @@
   <body>
 
     <div class='container-sm'>
-      <table class='table table-sm'>
-        <tr>
-          <th class='delete-col'></th>
-          <th>Ingredient</th>
-          <th>Amount</th>
-        </tr>
-          <% user.staples.forEach(s => { %>
-            <tr>
-              <td>
-                <form action='staples/ingredient/<%= s.ingredient._id %>?_method=DELETE' method='POST'>
-                  <button type='submit'><i class="fas fa-times"></i></button>
-                </form>
-              </td>
-              <td><%= s.ingredient.ingredientName %></td>
-              <td><%= s.amount %></td>
-            </tr>
-          <% }) %>
-      </table>
+      <% if (user.staples.length === 0) { %>
+        <h5 class='text-center'>You have no staples. Add one below.</h5> 
+      <% } else {%>
+        <table class='table table-sm'>
+          <tr>
+            <th class='delete-col'></th>
+            <th>Ingredient</th>
+            <th>Amount</th>
+          </tr>
+            <% user.staples.forEach(s => { %>
+              <tr>
+                <td>
+                  <form action='staples/ingredient/<%= s.ingredient._id %>?_method=DELETE' method='POST'>
+                    <button type='submit'><i class="fas fa-times"></i></button>
+                  </form>
+                </td>
+                <td><%= s.ingredient.ingredientName %></td>
+                <td><%= s.amount %></td>
+              </tr>
+            <% }) %>
+        </table>
+      <% } %>
       
     </div>
     <form class='pin-bottom' action='/staples' method='POST'>

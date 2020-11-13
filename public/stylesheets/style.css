@@ -1,7 +1,3 @@
-body {
-  width: 100vw;
-}
-
 .navbar {
   position: fixed;
   width: 100%;
@@ -184,6 +180,11 @@ button {
 }
 
 #generate:active {
+  color:white;
+  text-decoration: none;
+}
+
+#generate:hover {
   color:white;
   text-decoration: none;
 }

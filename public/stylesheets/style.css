@@ -226,6 +226,10 @@ li {
   margin-bottom: 90px;
 }
 
+.form-check input {
+  width: auto;
+}
+
 @media only screen and (min-width: 500px) {
   .container-sm {
     width: 50%;
@@ -236,6 +240,7 @@ li {
     padding-right:25%;
   }
 }
+
 
 
 

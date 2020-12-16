@@ -33,20 +33,20 @@ The app works equally well on desktop and mobile.
 
 The user adds a list of staple items that they always want in their kitchen.
 
-<img src='https://github.com/conspop/meal-prep/blob/master/screenshots/staples.png'>
+<img src='https://github.com/conspop/grocree/blob/master/screenshots/staples.png'>
 
 ### Recipes
 
 The user adds recipes and their ingredients.
 
-<img src='https://github.com/conspop/meal-prep/blob/master/screenshots/recipes.png'>
+<img src='https://github.com/conspop/grocree/blob/master/screenshots/recipes.png'>
 
 ### Lists
 
 The user generates their grocery list by deciding if they want to include the staples and which recipes they'd like to include. The app then generates the grocery list and items can be added and removed from the list.
 
-<img src='https://github.com/conspop/meal-prep/blob/master/screenshots/list-generator.png'>
-<img src='https://github.com/conspop/meal-prep/blob/master/screenshots/list.png'>
+<img src='https://github.com/conspop/grocree/blob/master/screenshots/list-generator.png'>
+<img src='https://github.com/conspop/grocree/blob/master/screenshots/list.png'>
 
 ## Next Steps
 

@@ -2,7 +2,7 @@
   position: fixed;
   width: 100%;
   top:0px;
-  background-color: #284B63;
+  background-color: #E53D00;
 }
 
 .navbar a {
@@ -85,7 +85,7 @@
   justify-content:space-between;
   padding: 10px 10px;
   align-items: center;
-  background-color: #3C6E71;
+  background-color: #65A762;
   color: white;
   font-size: 1.2em;
 }
@@ -103,7 +103,7 @@
 .pin-10 {
   width:7%;
   height:30px;
-  background-color: #3c6E71;
+  background-color: #65A762;
 }
 
 .pin-10 a {
@@ -113,7 +113,7 @@
 input {
   width: 100%;
   border: 2px solid white;
-  background-color: #3C6E71;
+  background-color: #65A762;
   color:white;
   padding: 5px;
 }
@@ -141,7 +141,7 @@ button {
 }
 
 .pin-10 button {
-  background-color: #3C6E71;
+  background-color: #65A762;
   padding:0;
 }
 
@@ -151,7 +151,7 @@ button {
 
 .fa-plus {
   color:white;
-  background-color: #3c6E71;
+  background-color: #65A762;
 }
 
 .active-page {
@@ -160,7 +160,7 @@ button {
 
 .big-list a {
   font-size: 1.5em;
-  color: #3C6E71
+  color: #65A762
 }
 
 .big-list button {
@@ -196,7 +196,7 @@ button {
 }
 
 .generate-button {
-  background-color: #3C6E71;
+  background-color: #65A762;
   text-align: center;
   color:white;
   height: 67px;
